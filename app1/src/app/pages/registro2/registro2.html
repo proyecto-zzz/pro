@@ -1,0 +1,62 @@
+<div class="reg2-page enter">
+  <!-- Foto izquierda -->
+  <aside class="left">
+    <div class="photo" style="background-image:url('assets/registro2.jpg');"></div>
+  </aside>
+
+  <!-- Formulario derecha -->
+  <section class="right">
+    <header class="brand">
+      <div class="logo"><img src="assets/logo-banco.jpg" alt="Banco Zand" /></div>
+      <div class="brand-text">BANCO<br />ZAND</div>
+    </header>
+
+    <h2 class="title">Ingresa tus datos de contacto:</h2>
+
+    <form #f="ngForm" (ngSubmit)="siguiente(f)" novalidate class="form">
+
+      <div class="field" [class.invalid]="(f.submitted || submitted) && celular.invalid">
+        <label>Teléfono celular:</label>
+        <input type="tel" name="celular" [(ngModel)]="form.celular" #celular="ngModel"
+               required pattern="^[0-9]{10,15}$" 
+               [attr.aria-invalid]="celular.invalid && (celular.touched || f.submitted || submitted)" />
+        <!-- Mensaje oculto visualmente pero accesible para lectores de pantalla -->
+        <span class="error" *ngIf="celular.invalid && (celular.touched || f.submitted || submitted)">
+          <span *ngIf="celular.errors?.['required']">El celular es obligatorio.</span>
+          <span *ngIf="celular.errors?.['pattern']">Ingresa solo dígitos (10–15).</span>
+        </span>
+      </div>
+
+      <div class="field">
+        <label>Teléfono alterno (opcional):</label>
+        <input type="tel" name="alterno" [(ngModel)]="form.alterno" />
+      </div>
+
+      <div class="field" [class.invalid]="(f.submitted || submitted) && email.invalid">
+        <label>Correo electrónico:</label>
+        <input type="email" name="email" [(ngModel)]="form.email" #email="ngModel"
+               required email 
+               [attr.aria-invalid]="email.invalid && (email.touched || f.submitted || submitted)" />
+        <span class="error" *ngIf="email.invalid && (email.touched || f.submitted || submitted)">
+          <span *ngIf="email.errors?.['required']">El correo es obligatorio.</span>
+          <span *ngIf="email.errors?.['email']">Ingresa un correo válido.</span>
+        </span>
+      </div>
+
+      <div class="field" [class.invalid]="(f.submitted || submitted) && direccion.invalid">
+        <label>Dirección completa:</label>
+        <textarea name="direccion" [(ngModel)]="form.direccion" #direccion="ngModel"
+                  required rows="2"
+                  [attr.aria-invalid]="direccion.invalid && (direccion.touched || f.submitted || submitted)"></textarea>
+        <span class="error" *ngIf="direccion.invalid && (direccion.touched || f.submitted || submitted)">
+          La dirección es obligatoria.
+        </span>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn ghost" (click)="regresar()">Regresar</button>
+        <button type="submit" class="btn primary">Siguiente</button>
+      </div>
+    </form>
+  </section>
+</div>

@@ -1,0 +1,94 @@
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo"><img src="assets/logo-banco.jpg" alt="Banco Zand" /></div>
+      <div class="brand-text">BANCO<br />ZAND</div>
+    </div>
+  <h1 class="title">Cuenta</h1>
+
+  <button class="btn back" type="button" (click)="regresar()">Regresar</button>
+</header>
+
+<section class="panel">
+  <!-- IZQUIERDA -->
+  <div class="left">
+    <!-- PESTAÑAS -->
+    <div class="tabs">
+      <button class="tab" [class.active]="currentTab==='mov'" (click)="setTab('mov')">Movimientos</button>
+      <button class="tab" [class.active]="currentTab==='info'" (click)="setTab('info')">Información</button>
+      <button class="tab" [class.active]="currentTab==='edo'"  (click)="setTab('edo')">
+        Estado de<br>Cuenta
+      </button>
+    </div>
+
+    <!-- CUERPO -->
+    <div class="left-body">
+      <!-- Movimientos -->
+      <ng-container *ngIf="currentTab==='mov'">
+        <div class="items">
+          <div class="item" *ngFor="let m of movimientos">
+            <div class="col col-fecha"><div class="fecha">{{ m.fechaCab }}</div></div>
+            <div class="col col-info">
+              <div class="titulo">{{ m.titulo }}</div>
+              <div class="sub">{{ m.subtitulo }}</div>
+            </div>
+            <div class="col col-monto"><div class="monto">{{ m.monto }}</div></div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Información -->
+      <ng-container *ngIf="currentTab==='info'">
+        <div class="inner-card">
+          <div class="info-row" *ngFor="let i of infoTarjeta">
+            <div class="label">{{ i.label }}</div>
+            <div class="value">{{ i.value }}</div>
+            <div class="divider"></div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Estado de cuenta -->
+      <ng-container *ngIf="currentTab==='edo'">
+        <div class="inner-card">
+          <label class="edo-row select-all">
+            <input type="checkbox">
+            <span>Seleccionar todas</span>
+            <div class="divider"></div>
+          </label>
+
+          <label class="edo-row" *ngFor="let e of edoCuenta">
+            <input type="checkbox">
+            <div class="edo-text">
+              <div class="mes">{{ e.mes }}</div>
+              <div class="rango">{{ e.rango }}</div>
+            </div>
+            <div class="divider"></div>
+          </label>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- DERECHA (centrada) – deja tu bloque tal como ya lo corregimos -->
+  <div class="right">
+    <div class="actions">
+      <div class="act">
+        <button class="round" (click)="apagarTarjeta()" title="Apagar tarjeta">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="caption">Apagar<br>tarjeta</div>
+      </div>
+
+      <div class="act">
+        <button class="round" (click)="verTarjetaDigital()" title="Tarjeta digital">
+          <svg viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 11h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="caption">Tarjeta<br>digital</div>
+      </div>
+    </div>
+
+    <div class="card"><div class="chip"></div><div class="brand">CREDIT CARD</div></div>
+    <div class="saldo">{{ saldo }}</div>
+    <div class="mask">{{ tarjetaMasked }}</div>
+  </div>
+</section>
