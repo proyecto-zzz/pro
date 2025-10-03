@@ -1,0 +1,74 @@
+<div class="page">
+  <aside class="left">
+    <div class="brand">
+      <img src="assets/logo-banco.jpg" alt="Banco Zand" class="logo" />
+      <h2 class="brand-title">BANCO<br />ZAND</h2>
+    </div>
+    <blockquote class="slogan">“TU FUTURO,<br />CON<br />CONFIANZA”</blockquote>
+  </aside>
+
+  <main class="right">
+    <section class="card">
+      <h1 class="title">BIENVENIDO</h1>
+      <p class="subtitle">Inicia sesión</p>
+      <div class="form-error" *ngIf="error">{{ error }}</div>
+
+      <form class="form" #f="ngForm" (ngSubmit)="acceder(f)" autocomplete="off" novalidate>
+
+        <!-- Email -->
+        <div class="field"
+            [class.invalid]="emailCtrl?.invalid && (emailCtrl?.touched || f.submitted || submitted)">
+          <input
+            type="email"
+            name="email"
+            [(ngModel)]="email"
+            #emailCtrl="ngModel"
+            placeholder="Email"
+            required
+            email
+            autocomplete="username"
+            aria-required="true"
+          />
+          <div class="error" *ngIf="emailCtrl?.errors && (emailCtrl?.touched || f.submitted || submitted)">
+            <span *ngIf="emailCtrl?.errors?.['required']">El email es obligatorio.</span>
+            <span *ngIf="emailCtrl?.errors?.['email']">Ingresa un email válido.</span>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="field pwd-field"
+            [class.invalid]="pwdCtrl?.invalid && (pwdCtrl?.touched || f.submitted || submitted)">
+          <input
+            [type]="showPwd ? 'text' : 'password'"
+            name="password"
+            [(ngModel)]="password"
+            #pwdCtrl="ngModel"
+            placeholder="Contraseña"
+            required
+            minlength="4"
+            autocomplete="current-password"
+            aria-required="true"
+          />
+          <button type="button" class="toggle" (click)="showPwd = !showPwd">
+            {{ showPwd ? '🙈' : '👁️' }}
+          </button>
+            <div class="error" *ngIf="pwdCtrl?.errors && (pwdCtrl?.touched || f.submitted || submitted)">
+              <span *ngIf="pwdCtrl?.errors?.['required']">La contraseña es obligatoria.</span>
+              <span *ngIf="pwdCtrl?.errors?.['minlength']">Mínimo 4 caracteres.</span>
+            </div>
+        </div>
+
+        <div class="help">
+          <a href="#" (click)="animateForget($event)">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <button type="submit" class="submit" [disabled]="loading">Acceder</button>
+      </form>
+
+      <p class="signup">
+        ¿No tienes una cuenta?
+        <a href="#" (click)="animateSignup($event)" class="signup-link">Inscribirse</a>
+      </p>
+    </section>
+  </main>
+</div>

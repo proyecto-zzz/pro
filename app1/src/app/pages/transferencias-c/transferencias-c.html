@@ -1,0 +1,33 @@
+<div class="transf-page" #transfPage>
+  <!-- Top bar (azul) -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo"><img src="assets/logo-banco.jpg" alt="Banco Zand" /></div>
+      <div class="brand-text">BANCO<br />ZAND</div>
+    </div>
+    <h1 class="title">Transferencias</h1>
+    <button class="btn back" type="button" (click)="regresar()">Regresar</button>
+  </header>
+
+  <!-- Panel -->
+  <section class="panel">
+    <button class="pill" type="button" (click)="nuevaCuenta()">
+      <span class="plus">+</span>
+      <span>Nueva cuenta o celular</span>
+    </button>
+
+    <h3 class="section-title">A otra persona</h3>
+
+    <div class="list">
+      <div class="item" *ngFor="let d of lista">
+        <div class="avatar">{{ d.nombre | slice:0:1 | uppercase }}</div>
+        <div class="data">
+          <div class="name">{{ d.nombre }}</div>
+          <div class="bank">{{ d.banco }}</div>
+          <div class="acct">{{ d.cuentaMasked }}</div>
+        </div>
+        <button class="kebab" type="button" (click)="opciones(d)">•••</button>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,417 @@
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial
+}
+
+.cuenta-page{
+  min-height:100vh;
+  background:#eaf6f8
+}
+
+.topbar{
+  background: linear-gradient(180deg,#56a5de,#2887c4);
+  padding: 14px 20px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+  margin-bottom: 14px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px
+}
+
+.logo{
+  width:56px;
+  height:56px;
+  border-radius:16px;
+  background:#0f2d39;
+  display:grid;
+  place-items:center; 
+  box-shadow:0 10px 22px rgba(0,0,0,.25);
+}
+
+.logo img{ 
+  width:70%; 
+  height:70%; 
+  object-fit:contain;
+  border-radius:14px;
+}
+
+.brand-text{
+  color:#082d36;
+  font-weight:800;
+  line-height:1.05;
+  text-transform:uppercase
+}
+
+.title{
+  margin:0;
+  text-align:center;
+  color:#0b2f39;
+  font-weight:800;
+  font-size:28px;
+  font-family: Georgia,"Times New Roman",Times,serif;
+}
+
+.btn.back{
+  border:0;
+  border-radius:22px;
+  padding:10px 18px;
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+  background:linear-gradient(#347fb8,#1f669a);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.35), 
+  0 8px 0 #165077, 0 12px 22px rgba(0,0,0,.2);
+}
+
+.panel{
+  margin:18px 22px; 
+  padding:0;
+  background:#fff; 
+  border-radius:28px;
+  box-shadow:0 16px 32px rgba(6,34,46,.14);
+  display:grid; 
+  grid-template-columns: 1.35fr 1fr; 
+  overflow:hidden;
+}
+
+.left{ 
+  background:#c0e6ea; 
+  padding:18px;
+}
+
+.headers{
+  display:grid; 
+  grid-template-columns: 1fr 1.4fr .9fr; 
+  gap:12px;
+  padding:8px 10px; 
+  font-weight:800; 
+  color:#244b3e;
+}
+
+.items{ 
+  display:grid; 
+  gap:14px; 
+}
+
+.item{
+  background:#67a89a; border-radius:18px; 
+  color:#0e281e;
+  padding:10px 12px;
+  display:grid; 
+  grid-template-columns: 1fr 1.4fr .9fr; gap:12px;
+  box-shadow:0 6px 12px rgba(0,0,0,.12) inset, 
+  0 6px 12px rgba(0,0,0,.08);
+}
+
+.col-fecha .fecha{ 
+  text-align:center; 
+  font-weight:800; 
+  color:#123; 
+}
+
+.col-info .titulo{ 
+  font-weight:800; 
+  margin-bottom:2px 
+}
+
+.col-info .sub{ 
+  opacity:.85 
+}
+
+.col-monto .monto{ 
+  font-weight:800; 
+  color:#0b1c16; 
+  text-align:right 
+}
+
+.right{
+  background:#f7fbfb;
+  padding:20px 26px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:16px;
+}
+
+.actions{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:36px;
+}
+
+.act{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+}
+
+.round{
+  width:64px; 
+  height:64px; 
+  border-radius:50%; 
+  border:0; 
+  cursor:pointer;
+  background:#cfe6d8; 
+  color:#1a3a2e; 
+  display:grid; 
+  place-items:center;
+  box-shadow:0 3px 8px rgba(0,0,0,.12);
+}
+
+.round svg{ 
+  width:28px; 
+  height:28px 
+}
+
+.caption{ 
+  font-size:13px; 
+  line-height:1.1; 
+  color:#1a2a2a 
+}
+
+.card{ 
+  width:260px; 
+  height:150px; 
+  border-radius:10px;
+  background:linear-gradient(135deg,#5f62ff,#3db2ff);
+  position:relative; 
+  box-shadow:0 8px 16px rgba(0,0,0,.25);
+  margin:8px auto;
+}
+
+.card .chip{
+  width:28px;
+  height:22px;
+  background:#f0d25a;
+  border-radius:4px; 
+  position:absolute; 
+  top:26px; 
+  left:22px;
+}
+
+.card .brand{
+  position:absolute; 
+  top:18px; 
+  right:18px; 
+  color:#fff; 
+  font-weight:800; 
+  letter-spacing:.5px;
+}
+
+.saldo{
+  font-size:28px; 
+  font-weight:800; 
+  margin-top:6px;
+  text-align:center;
+}
+
+.mask{
+  font-size:16px; 
+  font-weight:800; 
+  letter-spacing:.6px;
+  text-align:center;
+}
+
+@media (max-width: 980px){
+  .panel{ grid-template-columns:1fr; }
+}
+
+.tabs{
+  display:flex; 
+  gap:40px; 
+  align-items:flex-end;
+  border-bottom: 2px solid rgba(0,0,0,.08);
+  padding: 6px 10px 0;
+  margin-bottom: 10px;
+}
+
+.tab{
+  background:transparent; 
+  border:0; 
+  cursor:pointer;
+  padding:10px 6px 12px; 
+  font-weight:800; 
+  color:#203a36; 
+  font-size:18px;
+  position:relative;
+}
+
+.tab.active::after{
+  content:""; 
+  position:absolute; 
+  left:0; 
+  right:0; 
+  bottom:-2px;
+  height:3px; 
+  background:#1f3c3a; 
+  border-radius:2px;
+}
+
+.tab:nth-child(3){ 
+  line-height:1.1 
+}
+
+.info-row{ 
+  margin:12px 4px; 
+}
+
+.info-row .label{ 
+  font-weight:800; 
+  color:#0f2921; 
+  margin-bottom:6px; 
+}
+
+.info-row .value{ 
+  margin-bottom:6px; 
+}
+
+.info-row .divider{
+  height:2px; 
+  width:100%;
+  background:#2e5a4e; 
+  opacity:.45;
+  border-radius:2px;
+}
+
+.edo-row{
+  display:grid; 
+  grid-template-columns: 22px 1fr; 
+  gap:10px; 
+  align-items:start;
+  margin:12px 4px;
+}
+
+.edo-row input{ 
+  width:18px; 
+  height:18px; 
+  accent-color:#1f3c3a; 
+  cursor:pointer; 
+}
+
+.edo-row .mes{ 
+  font-weight:800; 
+  color:#0f2921; 
+}
+
+.edo-row .rango{ 
+  opacity:.9; 
+}
+
+.edo-row .divider{
+  grid-column:1 / -1; 
+  height:2px; 
+  background:#2e5a4e; 
+  opacity:.45; 
+  border-radius:2px;
+}
+
+.edo-row.select-all{ 
+  font-weight:800; 
+}
+
+.right{
+  background:#f7fbfb;
+  padding:20px 26px;
+  display:flex; 
+  flex-direction:column;
+  align-items:center; 
+  justify-content:center; 
+  text-align:center; 
+  gap:16px;
+}
+
+.actions{ 
+  display:flex; 
+  gap:36px; 
+  align-items:center; 
+  justify-content:center; 
+}
+
+.act{ 
+  display:flex; 
+  flex-direction:column; 
+  align-items:center; 
+  gap:6px; 
+}
+
+.round{ 
+  width:64px;
+  height:64px;
+  border-radius:50%; 
+  border:0; 
+  background:#cfe6d8; 
+  color:#1a3a2e;
+  display:grid;
+  place-items:center; 
+  box-shadow:0 3px 8px rgba(0,0,0,.12) 
+}
+
+.round svg{ 
+  width:28px;
+  height:28px 
+}
+
+.caption{ 
+  font-size:13px; 
+  line-height:1.1; 
+  color:#1a2a2a 
+}
+
+.card{ 
+  width:260px;
+  height:150px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#5f62ff,#3db2ff);
+  position:relative; 
+  box-shadow:0 8px 16px rgba(0,0,0,.25); 
+  margin:8px auto 
+}
+
+.card .chip{ 
+  width:28px;
+  height:22px;
+  background:#f0d25a;
+  border-radius:4px; 
+  position:absolute; 
+  top:26px; 
+  left:22px 
+}
+
+.card .brand{ 
+  position:absolute; 
+  top:18px; 
+  right:18px; 
+  color:#fff; 
+  font-weight:800; 
+  letter-spacing:.5px 
+}
+
+.saldo{ 
+  font-size:28px; 
+  font-weight:800; 
+  margin-top:6px 
+}
+
+.mask{ 
+  font-size:16px; 
+  font-weight:800; 
+  letter-spacing:.6px 
+}
+
+@media (max-width:980px){
+  .panel{ grid-template-columns:1fr; }
+}

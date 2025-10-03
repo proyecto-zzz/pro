@@ -1,0 +1,62 @@
+<div class="reg-page enter">
+  <!-- Columna izquierda: formulario -->
+  <section class="left">
+    <header class="brand">
+        <div class="logo">
+          <img src="assets/logo-banco.jpg" alt="Banco Zand" />
+        </div>
+      <div class="brand-text">BANCO<br />ZAND</div>
+    </header>
+
+    <h2 class="title">Ingresa tus datos personales:</h2>
+
+    <form #f="ngForm" (ngSubmit)="siguiente(f)" novalidate class="form">
+      <!-- Nombre -->
+      <div class="field" [class.invalid]="(f.submitted || submitted) && nombre.invalid">
+        <label>Nombre Completo:</label>
+        <input type="text" name="nombre" [(ngModel)]="form.nombre" #nombre="ngModel" required 
+               [attr.aria-invalid]="nombre.invalid && (nombre.touched || f.submitted || submitted)" />
+        <!-- Mensaje oculto visualmente pero accesible para lectores de pantalla -->
+        <span class="error" *ngIf="nombre.invalid && (nombre.touched || f.submitted || submitted)">
+          El nombre es obligatorio.
+        </span>
+      </div>
+
+      <!-- Fecha -->
+      <div class="field" [class.invalid]="(f.submitted || submitted) && fecha.invalid">
+        <label>Fecha de nacimiento:</label>
+        <input type="date" name="fecha" [(ngModel)]="form.fecha" #fecha="ngModel" required 
+               [attr.aria-invalid]="fecha.invalid && (fecha.touched || f.submitted || submitted)" />
+        <span class="error" *ngIf="fecha.invalid && (fecha.touched || f.submitted || submitted)">
+          La fecha es obligatoria.
+        </span>
+      </div>
+
+      <!-- CURP (Opcional) -->
+      <div class="field">
+        <label>CURP:</label>
+        <input type="text" name="curp" [(ngModel)]="form.curp" #curp="ngModel" />
+        <small class="hint">Opcional: luego podemos añadir una validación específica.</small>
+      </div>
+
+      <!-- RFC (Opcional) -->
+      <div class="field">
+        <label>RFC:</label>
+        <input type="text" name="rfc" [(ngModel)]="form.rfc" #rfc="ngModel" />
+        <small class="hint">Opcional: también podemos validar el formato del RFC.</small>
+      </div>
+    </form>
+
+    <!-- Botones fuera del formulario para asegurar visibilidad -->
+    <div class="actions-container">
+      <div class="actions">
+        <button type="button" class="btn ghost" (click)="regresar()">Regresar</button>
+        <button type="button" class="btn primary" (click)="f.ngSubmit.emit()">Siguiente</button>
+      </div>
+    </div>
+  </section>
+
+  <aside class="right">
+    <div class="photo" style="background-image:url('/assets/registro.jpg');"></div>
+  </aside>
+</div>

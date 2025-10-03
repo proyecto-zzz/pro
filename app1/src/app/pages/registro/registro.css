@@ -1,0 +1,373 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Ocultar scrollbar en todos los navegadores - Versión más completa */
+html {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* Internet Explorer 10+ */
+  overflow: hidden !important;
+}
+
+html::-webkit-scrollbar {
+  display: none !important; /* Safari y Chrome */
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* Internet Explorer 10+ */
+  overflow: hidden !important;
+}
+
+body::-webkit-scrollbar {
+  display: none !important; /* Safari y Chrome */
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+/* Regla universal para todos los elementos */
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.reg-page {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  background: #eaf6f8;
+  overflow: hidden !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.left {
+  padding: 26px 36px;
+  overflow-y: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+
+.logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: #0f2d39;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 22px rgba(0,0,0,.25);
+}
+
+.logo img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  border-radius: 14px;
+}
+
+.brand-text {
+  color: #082d36;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: .5px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 16px 0 18px;
+  color: #0b2f39;
+  font-weight: 800;
+  font-size: 26px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.form {
+  max-width: 560px;
+  display: grid;
+  gap: 16px;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+  margin-bottom: 20px;
+}
+
+.form::-webkit-scrollbar {
+  width: 6px;
+}
+
+.form::-webkit-scrollbar-thumb {
+  background-color: #4b7b86;
+  border-radius: 3px;
+}
+
+.field {
+  background: #aee6ea;
+  border-radius: 18px;
+  padding: 10px 14px;
+  box-shadow: 0 8px 16px rgba(0,0,0,.1) inset, 0 6px 14px rgba(0,0,0,.05);
+  transition: all 0.3s ease;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid transparent;
+}
+
+.field label {
+  display: block;
+  font-weight: 700;
+  color: #0b2f39;
+  margin-bottom: 6px;
+}
+
+.field input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #4b7b86;
+  padding: 6px 4px 8px;
+  outline: none;
+  font-size: 16px;
+  color: #0b2f39;
+}
+
+/* CAMPO INVÁLIDO - Mostrar borde completo */
+.field.invalid {
+  border: 2px solid #e57373;
+  background: #ffecec;
+  outline: none; /* Eliminar el outline para evitar duplicados */
+}
+
+.field.invalid input {
+  border-bottom-color: #b00020;
+}
+
+/* Ocultar mensajes de error visualmente pero mantener accesibilidad */
+.error {
+  display: block;
+  color: transparent;
+  font-weight: 700;
+  font-size: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+}
+
+.hint {
+  display: block;
+  font-size: 12px;
+  color: #4b7b86;
+  margin-top: 6px;
+}
+
+/* CONTENEDOR DE BOTONES FIJO EN LA PARTE INFERIOR */
+.actions-container {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(11, 47, 57, 0.1);
+  position: sticky;
+  bottom: 0;
+  background: #eaf6f8;
+  z-index: 10;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.btn {
+  height: 48px;
+  min-width: 160px;
+  padding: 0 20px;
+  border-radius: 24px;
+  border: 0;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.35), 0 8px 0 #10527a, 0 12px 22px rgba(0,0,0,.2);
+  transition: transform .04s, box-shadow .12s;
+  flex-shrink: 0;
+}
+
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.35), 0 6px 0 #10527a, 0 8px 14px rgba(0,0,0,.2);
+}
+
+.btn.primary {
+  background: linear-gradient(#3aa3e3, #2676a8);
+  color: #fff;
+}
+
+.btn.ghost {
+  background: linear-gradient(#8fb6c7, #6a98aa);
+  color: #fff;
+}
+
+.right {
+  padding: 0;
+  display: grid;
+  align-items: stretch;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  background-image: url('/assets/registro.jpg');
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 36px;
+  border-bottom-left-radius: 36px;
+  box-shadow: 0 16px 32px rgba(0,0,0,.14);
+  filter: saturate(.95) contrast(.98);
+}
+
+@media (max-width: 980px) {
+  .reg-page {
+    grid-template-columns: 1fr;
+    overflow-y: auto !important;
+  }
+  .right {
+    order: -1;
+    padding: 12px;
+    height: 36vh;
+  }
+  .photo {
+    height: 100%;
+    border-radius: 22px;
+  }
+  .left {
+    height: auto;
+    overflow: visible;
+    padding-bottom: 20px;
+  }
+  .form {
+    overflow: visible;
+    max-height: none;
+    margin-bottom: 16px;
+  }
+  .actions-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    background: #eaf6f8;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+  }
+  .actions {
+    justify-content: center;
+  }
+  .btn {
+    min-width: 140px;
+    flex: 1;
+  }
+  .field {
+    min-height: 70px; /* Reducir altura en móvil */
+  }
+}
+
+.photo {
+  pointer-events: none;
+}
+
+.reg-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.reg-page .left {
+  position: relative;
+  z-index: 2;
+}
+
+.reg-page .right {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.reg-page.enter {
+  animation: slideFadeIn 0.7s ease-out both;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Asegurar que ningún elemento interno cause scroll */
+.reg-page > * {
+  overflow: hidden !important;
+}
+
+/* Mensaje de error general que sí se muestra */
+.form-error {
+  color: #b00020;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 16px;
+  padding: 10px;
+  background: #ffecec;
+  border-radius: 10px;
+  text-align: center;
+}

@@ -1,0 +1,80 @@
+<div class="page forget-page">
+  <aside class="left">
+    <div class="brand">
+      <img src="assets/logo-banco.jpg" alt="Banco Zand" class="logo" />
+      <h2 class="brand-title">BANCO<br />ZAND</h2>
+    </div>
+    <blockquote class="slogan">"TU FUTURO,<br />CON<br />CONFIANZA"</blockquote>
+  </aside>
+
+  <main class="right">
+    <section class="card">
+      <h1 class="title">RECUPERAR CONTRASEÑA</h1>
+      <p class="subtitle">Ingresa tus datos para recuperar el acceso</p>
+      <form class="form" #f="ngForm" (ngSubmit)="recuperarContrasena(f)" autocomplete="off" novalidate *ngIf="!isSuccess">
+        <div class="field" [class.invalid]="cuentaCtrl.invalid && (cuentaCtrl.touched || f.submitted)">
+          <input
+            type="text"
+            name="cuenta"
+            [(ngModel)]="cuenta"
+            #cuentaCtrl="ngModel"
+            placeholder="Número de cuenta"
+            required
+            minlength="10"
+            maxlength="20"
+            autocomplete="off"
+            aria-required="true"
+          />
+          <div class="error" *ngIf="cuentaCtrl.errors && (cuentaCtrl.touched || f.submitted)">
+            <span *ngIf="cuentaCtrl.errors['required']">El número de cuenta es obligatorio.</span>
+            <span *ngIf="cuentaCtrl.errors['minlength']">Mínimo 10 caracteres.</span>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="field" [class.invalid]="emailCtrl.invalid && (emailCtrl.touched || f.submitted)">
+          <input
+            type="email"
+            name="email"
+            [(ngModel)]="email"
+            #emailCtrl="ngModel"
+            placeholder="Email registrado"
+            required
+            email
+            autocomplete="off"
+            aria-required="true"
+          />
+          <div class="error" *ngIf="emailCtrl.errors && (emailCtrl.touched || f.submitted)">
+            <span *ngIf="emailCtrl.errors['required']">El email es obligatorio.</span>
+            <span *ngIf="emailCtrl.errors['email']">Ingresa un email válido.</span>
+          </div>
+        </div>
+        <div class="field" [class.invalid]="documentoCtrl.invalid && (documentoCtrl.touched || f.submitted)">
+          <input
+            type="text"
+            name="documento"
+            [(ngModel)]="documento"
+            #documentoCtrl="ngModel"
+            placeholder="Clave de elector"
+            required
+            minlength="6"
+            autocomplete="off"
+            aria-required="true"
+          />
+          <div class="error" *ngIf="documentoCtrl.errors && (documentoCtrl.touched || f.submitted)">
+            <span *ngIf="documentoCtrl.errors['required']">El documento es obligatorio.</span>
+            <span *ngIf="documentoCtrl.errors['minlength']">Mínimo 6 caracteres.</span>
+          </div>
+        </div>
+        <button type="submit" class="submit">Recuperar contraseña</button>
+      </form>
+      <div class="success-message" *ngIf="isSuccess">
+        <p>Hemos enviado instrucciones para restablecer tu contraseña al email proporcionado.</p>
+        <p>Por favor, revisa tu bandeja de entrada y spam.</p>
+      </div>
+      <p class="back-login">
+        <a href="#" (click)="volverAlLogin($event)" class="back-link">Volver al inicio de sesión</a>
+      </p>
+    </section>
+  </main>
+</div>

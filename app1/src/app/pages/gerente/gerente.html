@@ -1,0 +1,108 @@
+<header class="topbar">
+  <div class="brand">
+    <img class="logo" src="assets/logo-banco.jpg" alt="Banco Zand" />
+    <div class="brand-text">BANCO<br />ZAND</div>
+  </div>
+
+  <h1 class="top-title">Gerente</h1>
+
+  <button class="pill-btn" type="button" (click)="salir()">Regresar</button>
+</header>
+
+<main class="container">
+
+  <!-- Tarjeta izquierda: Gestionar cuenta -->
+  <section class="card">
+    <h2 class="card-title">Gestionar cuenta</h2>
+
+    <div class="role-grid">
+      <!-- Ejecutor -->
+      <div class="role">
+        <div class="avatar-frame">
+          <svg viewBox="0 0 64 64" aria-hidden="true" class="avatar">
+            <circle cx="32" cy="24" r="12" fill="none" stroke="currentColor" stroke-width="2" />
+            <path d="M12 54c4-9 16-12 20-12s16 3 20 12" fill="none" stroke="currentColor" stroke-width="2" />
+          </svg>
+        </div>
+        <div class="role-label">Ejecutor</div>
+      </div>
+
+      <!-- Cliente -->
+      <div class="role role--green">
+        <div class="avatar-frame">
+          <svg viewBox="0 0 64 64" aria-hidden="true" class="avatar">
+            <circle cx="32" cy="24" r="12" fill="none" stroke="currentColor" stroke-width="2" />
+            <path d="M12 54c4-9 16-12 20-12s16 3 20 12" fill="none" stroke="currentColor" stroke-width="2" />
+          </svg>
+        </div>
+        <div class="role-label">Cliente</div>
+      </div>
+    </div>
+
+    <!-- Botones segmentados -->
+    <div class="segmented">
+      <button type="button" class="segmented__btn">Crear cuenta</button>
+      <button type="button" class="segmented__btn">Desactivar</button>
+    </div>
+
+    <button type="button" class="ghost-btn">Editar datos</button>
+  </section>
+
+  <!-- Tarjeta derecha: Gestionar permisos -->
+  <section class="card">
+    <h2 class="card-title">Gestionar permisos</h2>
+
+    <!-- Usuario (dropdown custom) -->
+    <div class="field">
+      <label class="label">Usuario</label>
+
+      <div class="select-custom" [class.open]="userMenuOpen" (click)="toggleUserMenu($event)">
+        <ng-container *ngIf="selectedUser as su">
+          <div class="select-custom__value">
+            <span class="chip">{{ su.name[0] }}</span>
+            <span class="select-text">{{ su.name }}</span>
+          </div>
+        </ng-container>
+        <span class="caret">⌄</span>
+
+        <div class="select-custom__menu" *ngIf="userMenuOpen">
+          <button
+            class="option"
+            type="button"
+            *ngFor="let u of users"
+            (click)="selectUser(u, $event)">
+            <span class="chip">{{ u.name[0] }}</span>
+            <span class="option-text">{{ u.name }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tiempo -->
+    <div class="field">
+      <label class="label">Tiempo</label>
+      <select class="input" [(ngModel)]="selectedPeriodo">
+        <option *ngFor="let p of periodos" [value]="p">{{ p }}</option>
+      </select>
+    </div>
+
+    <!-- Tipo de permiso -->
+    <div class="field">
+      <label class="label">Tipo de permiso</label>
+      <select class="input" [(ngModel)]="selectedPermiso">
+        <option *ngFor="let p of permisos" [value]="p">{{ p }}</option>
+      </select>
+    </div>
+
+    <button class="primary-btn" type="button" (click)="actualizar()">Siguiente</button>
+
+    <h3 class="subhead">Últimos permisos</h3>
+
+    <div class="last-row">
+      <span class="chip chip--icon">👤</span>
+      <span class="last-text">Acceso a reportes</span>
+      <span class="muted">1 día</span>
+    </div>
+  </section>
+
+</main>

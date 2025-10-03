@@ -1,0 +1,93 @@
+<div class="client-page" #clientPage>
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">
+        <!-- coloca tu logo en assets/logo-banco.png -->
+        <img src="assets/logo-banco.jpg" alt="Banco Zand">
+      </div>
+      <div class="brand-name">BANCO<br>ZAND</div>
+    </div>
+    <h1 class="title">Bienvenido</h1>
+    <div></div>
+  </header>
+
+  <!-- Panel principal -->
+  <section class="panel">
+
+    <!-- Acciones -->
+    <div class="actions">
+      <button class="action green" type="button" (click)="irSolicitudes()">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 3h7l4 4v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
+            <path d="M14 3v5h5" />
+            <path d="M8 13l2 2 4-4" />
+          </svg>
+        </span>
+        <span class="label">Solicitudes</span>
+      </button>
+
+      <button class="action yellow" type="button" (click)="irRetiros()">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 6h16v4H4zM6 10v8h12v-8"
+                  stroke="currentColor" fill="none" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="label">Retiros</span>
+      </button>
+
+      <button class="action red" type="button" (click)="irPagos()">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 7h18v10H3zM3 11h18" fill="none" 
+            stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="label">Pagos</span>
+      </button>
+
+      <button class="action blue" type="button" (click)="irTransferencias()">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h10M10 3l4 4-4 4M20 17H10m4-4-4 4 4 4"
+                  fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="label">Transferencias</span>
+      </button>
+    </div>
+
+    <!-- Sección Cuenta -->
+    <h3 class="section-tag">Cuenta</h3>
+
+    <div class="account-card">
+      <div class="left">
+        <div class="acc-title">
+          <span class="acc-dot">B</span>
+          {{ cuentaNombre }}
+        </div>
+
+        <div class="mini-card">
+          <div class="mc-chip"></div>
+          <div class="mc-lines"></div>
+          <div class="mc-brand">CREDIT CARD</div>
+        </div>
+
+        <div class="digits">{{ tarjetaMasked }}</div>
+      </div>
+
+      <div class="amount">$ {{ saldo | number:'1.2-2' }}</div>
+
+      <button class="menu-kebab" type="button" (click)="irCuenta()">…</button>
+    </div>
+
+    <!-- Cerrar sesión -->
+    <div class="logout-wrap">
+      <button class="logout" type="button" (click)="salir()">Cerrar<br>sesión</button>
+    </div>
+  </section>
+</div>

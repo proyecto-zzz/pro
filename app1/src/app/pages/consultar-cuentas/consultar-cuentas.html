@@ -1,0 +1,51 @@
+<div class="cons-page">
+  <!-- Barra superior (azul) -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo"><img src="assets/logo-banco.jpg" alt="Banco Zand" /></div>
+      <div class="brand-text">BANCO<br />ZAND</div>
+    </div>
+    <h1 class="title">Consultar cuentas</h1>
+    <button class="btn back" (click)="regresarTop()">Regresar</button>
+  </header>
+
+  <!-- Panel blanco -->
+  <section class="panel" *ngIf="sel === null">
+    <div class="lista">
+      <div class="row" *ngFor="let c of cuentas; let i = index">
+        <div class="label">Cliente: {{ c.cliente }}</div>
+        <button class="btn info" (click)="ver(i)">Más información</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detalle -->
+  <section class="panel detail" *ngIf="sel !== null">
+    <div class="left">
+      <p><strong>Cliente:</strong> {{ cuentas[sel!].cliente }}</p>
+      <p><strong>Número de cuenta:</strong> {{ cuentas[sel!].numero }}</p>
+      <p><strong>Tipo de cuenta:</strong> {{ cuentas[sel!].tipo }}</p>
+      <p><strong>Saldo actual:</strong> {{ cuentas[sel!].saldo }}</p>
+      <p><strong>Fecha de apertura:</strong> {{ cuentas[sel!].apertura }}</p>
+    </div>
+
+    <div class="right">
+      <!-- avatar ilustrativo -->
+      <div class="avatar">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0" stop-color="#19c3d1"/>
+              <stop offset="1" stop-color="#2b76c9"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="100" height="100" rx="18" fill="#bfe6ef"/>
+          <circle cx="50" cy="40" r="18" fill="url(#g)"/>
+          <path d="M18 80a32 22 0 0 1 64 0" fill="url(#g)"/>
+        </svg>
+      </div>
+
+      <button class="btn info" (click)="regresarLista()">Regresar</button>
+    </div>
+  </section>
+</div>

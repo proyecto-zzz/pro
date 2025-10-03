@@ -1,0 +1,41 @@
+<div class="close-page">
+  <!-- Barra superior roja -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo"><img src="assets/logo-banco.jpg" alt="Banco Zand" /></div>
+      <div class="brand-text">BANCO<br />ZAND</div>
+    </div>
+    <h1 class="title">Cerrar cuentas</h1>
+    <button class="btn back" type="button" (click)="regresar()">Regresar</button>
+  </header>
+
+  <!-- Panel -->
+  <section class="panel">
+    <h3 class="lead">Cierra cuentas pendientes:</h3>
+
+    <div class="lista">
+      <div class="item" *ngFor="let c of cierres; let i = index">
+        <p><strong>Cliente:</strong> {{ c.cliente }}</p>
+        <p><strong>Solicitud:</strong> {{ c.motivo }}</p>
+        <p><strong>Fecha de solicitud:</strong> {{ c.fecha }}</p>
+
+        <div class="acciones" *ngIf="c.estado === 'pendiente'">
+          <button class="btn danger" (click)="cerrar(i)">Cerrar</button>
+        </div>
+
+        <div class="badge" *ngIf="c.estado === 'cerrada'">Cerrada</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal de éxito -->
+  <div class="overlay" *ngIf="showModal"></div>
+  <div class="modal" *ngIf="showModal" role="dialog" aria-modal="true">
+    <div class="card">
+      <div class="msg">{{ modalMsg }}</div>
+      <div class="actions">
+        <button class="btn accept" (click)="aceptar()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
