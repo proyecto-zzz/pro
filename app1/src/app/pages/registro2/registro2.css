@@ -1,0 +1,348 @@
+/* ===== Base ===== */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Ocultar scrollbar en todos los navegadores - Versión más completa */
+html {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* Internet Explorer 10+ */
+  overflow: hidden !important;
+}
+
+html::-webkit-scrollbar {
+  display: none !important; /* Safari y Chrome */
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* Internet Explorer 10+ */
+  overflow: hidden !important;
+}
+
+body::-webkit-scrollbar {
+  display: none !important; /* Safari y Chrome */
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+/* Regla universal para todos los elementos */
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.reg2-page {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  background: #eaf6f8;
+  overflow: hidden !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.reg2-page .left { 
+  padding: 20px 8px 20px 20px; 
+  display: grid; 
+  align-items: center; 
+  overflow: hidden;
+}
+
+.reg2-page .photo {
+  width: 100%; 
+  height: 90vh; 
+  min-height: 380px;
+  background-size: cover; 
+  background-position: center;
+  border-top-right-radius: 36px; 
+  border-bottom-right-radius: 36px;
+  box-shadow: 0 16px 32px rgba(0,0,0,.14);
+  filter: saturate(.95) contrast(.98);
+  pointer-events: none;
+}
+
+.reg2-page .right { 
+  padding: 26px 36px; 
+  position: relative; 
+  z-index: 2;
+  overflow-y: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand { 
+  display: flex; 
+  align-items: center; 
+  gap: 14px; 
+  margin-bottom: 8px; 
+}
+
+.logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: #0f2d39;
+  display: grid;
+  place-items: center; 
+  box-shadow: 0 10px 22px rgba(0,0,0,.25);
+}
+
+.logo img { 
+  width: 70%; 
+  height: 70%; 
+  object-fit: contain;
+  border-radius: 14px;
+}
+
+.brand-text {
+  color: #082d36; 
+  font-weight: 800; 
+  line-height: 1.05; 
+  letter-spacing: .5px;
+  font-family: Georgia,"Times New Roman",Times,serif; 
+  font-size: 20px; 
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 16px 0 18px; 
+  color: #0b2f39; 
+  font-weight: 800; 
+  font-size: 26px;
+  font-family: Georgia,"Times New Roman",Times,serif;
+}
+
+.form { 
+  max-width: 520px; 
+  display: grid; 
+  gap: 16px;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+  margin-bottom: 20px;
+}
+
+.form::-webkit-scrollbar {
+  width: 6px;
+}
+
+.form::-webkit-scrollbar-thumb {
+  background-color: #4b7b86;
+  border-radius: 3px;
+}
+
+.field {
+  background: #aee6ea; 
+  border-radius: 18px; 
+  padding: 10px 14px 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,.1) inset, 0 6px 14px rgba(0,0,0,.05);
+  transition: all 0.3s ease;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid transparent;
+}
+
+.field label { 
+  display: block; 
+  font-weight: 700; 
+  color: #0b2f39; 
+  margin-bottom: 6px; 
+}
+
+.field input, .field textarea {
+  width: 100%; 
+  background: transparent; 
+  border: none; 
+  border-bottom: 2px solid #4b7b86;
+  padding: 6px 4px 8px; 
+  outline: none; 
+  font-size: 16px; 
+  color: #0b2f39; 
+  resize: vertical;
+}
+
+/* CAMPO INVÁLIDO - Mostrar borde completo (igual que en registro) */
+.field.invalid {
+  border: 2px solid #e57373;
+  background: #ffecec;
+  outline: none; /* Eliminar el outline para evitar duplicados */
+}
+
+.field.invalid input, 
+.field.invalid textarea { 
+  border-bottom-color: #b00020; 
+}
+
+/* Ocultar mensajes de error visualmente pero mantener accesibilidad (igual que en registro) */
+.error {
+  display: block;
+  color: transparent;
+  font-weight: 700;
+  font-size: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+}
+
+.actions { 
+  display: flex; 
+  gap: 16px; 
+  margin-top: auto;
+  padding: 20px 0;
+  border-top: 1px solid rgba(11, 47, 57, 0.1);
+  position: sticky;
+  bottom: 0;
+  background: #eaf6f8;
+  z-index: 10;
+}
+
+.btn {
+  height: 48px; 
+  min-width: 160px; 
+  padding: 0 20px; 
+  border-radius: 24px; 
+  border: 0;
+  font-weight: 800; 
+  cursor: pointer;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.35), 
+  0 8px 0 #10527a, 
+  0 12px 22px rgba(0,0,0,.2);
+  transition: transform .04s, box-shadow .12s;
+  position: relative;
+  overflow: visible;
+}
+
+.btn:active { 
+  transform: translateY(2px); 
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.35), 
+  0 6px 0 #10527a, 
+  0 8px 14px rgba(0,0,0,.2); 
+}
+
+.btn.primary { 
+  background: linear-gradient(#3aa3e3,#2676a8); 
+  color: #fff; 
+}
+
+.btn.ghost { 
+  background: linear-gradient(#8fb6c7,#6a98aa); 
+  color: #fff; 
+}
+
+/* Animación de entrada (igual que en registro) */
+.reg2-page.enter {
+  animation: slideFadeIn 0.7s ease-out both;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Asegurar que ningún elemento interno cause scroll */
+.reg2-page > * {
+  overflow: hidden !important;
+}
+
+/* Mensaje de error general que sí se muestra */
+.form-error {
+  color: #b00020;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 16px;
+  padding: 10px;
+  background: #ffecec;
+  border-radius: 10px;
+  text-align: center;
+}
+
+@media (max-width: 980px) {
+  .reg2-page {
+    grid-template-columns: 1fr;
+    overflow-y: auto !important;
+  }
+  
+  .reg2-page .left {
+    order: -1;
+    padding: 12px;
+    height: 36vh;
+  }
+  
+  .reg2-page .photo {
+    height: 100%;
+    border-radius: 22px;
+  }
+  
+  .reg2-page .right {
+    height: auto;
+    overflow: visible;
+    padding-bottom: 20px;
+  }
+  
+  .form {
+    overflow: visible;
+    max-height: none;
+    margin-bottom: 16px;
+  }
+  
+  .actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    background: #eaf6f8;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+    justify-content: center;
+    margin-top: 0;
+  }
+  
+  .btn {
+    min-width: 140px;
+    flex: 1;
+    margin-bottom: 0;
+  }
+  
+  .field {
+    min-height: 70px;
+  }
+}

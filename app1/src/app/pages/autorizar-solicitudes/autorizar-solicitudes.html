@@ -1,0 +1,49 @@
+<div class="auth-page">
+  <!-- Top bar amarilla -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo"><img src="assets/logo-banco.jpg" alt="Banco Zand" /></div>
+      <div class="brand-text">BANCO<br />ZAND</div>
+    </div>
+    <h1 class="title">Autorizar solicitudes</h1>
+    <button class="btn back" type="button" (click)="regresar()">Regresar</button>
+  </header>
+
+  <!-- Panel -->
+  <section class="panel">
+    <h3 class="lead">Autoriza o rechaza las solicitudes pendientes:</h3>
+
+    <div class="lista">
+      <div class="item" *ngFor="let s of solicitudes; let i = index">
+        <div class="texto">
+          <p><strong>Cliente:</strong> {{ s.cliente }}</p>
+          <p>
+            <strong>Solicitud:</strong>
+            {{ s.tipo }}<ng-container *ngIf="s.monto"> de {{ s.monto }}</ng-container>
+          </p>
+          <p><strong>Fecha de solicitud:</strong> {{ s.fecha }}</p>
+        </div>
+
+        <div class="acciones" *ngIf="s.estado === 'pendiente'">
+          <button class="btn ok" (click)="autorizar(i)">Autorizar</button>
+          <button class="btn no" (click)="rechazar(i)">Rechazar</button>
+        </div>
+
+        <div class="badge" *ngIf="s.estado !== 'pendiente'">
+          {{ s.estado === 'autorizada' ? 'Autorizada' : 'Rechazada' }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="overlay" *ngIf="showModal"></div>
+  <div class="modal" *ngIf="showModal" role="dialog" aria-modal="true">
+    <div class="card">
+      <div class="msg">{{ modalMsg }}</div>
+      <div class="actions">
+        <button class="btn accept" (click)="aceptar()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
