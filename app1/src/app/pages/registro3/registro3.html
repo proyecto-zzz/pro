@@ -1,0 +1,52 @@
+<div class="reg3-page enter">
+  <!-- Formulario izquierda -->
+  <section class="left">
+    <header class="brand">
+      <div class="logo"><img src="assets/logo-banco.jpg" alt="Banco Zand" /></div>
+      <div class="brand-text">BANCO<br />ZAND</div>
+    </header>
+
+    <h2 class="title">Ingresa tus datos de seguridad:</h2>
+
+    <form #f="ngForm" (ngSubmit)="siguiente(f)" novalidate class="form">
+
+      <div class="field" [class.invalid]="(f.submitted || submitted) && usuario.invalid">
+        <label>Nombre de usuario:</label>
+        <input type="text" name="usuario" [(ngModel)]="form.usuario" #usuario="ngModel"
+               required minlength="3" 
+               [attr.aria-invalid]="usuario.invalid && (usuario.touched || f.submitted || submitted)" />
+        <!-- Mensaje oculto visualmente pero accesible para lectores de pantalla -->
+        <span class="error" *ngIf="usuario.invalid && (usuario.touched || f.submitted || submitted)">
+          <span *ngIf="usuario.errors?.['required']">El usuario es obligatorio.</span>
+          <span *ngIf="usuario.errors?.['minlength']">Mínimo 3 caracteres.</span>
+        </span>
+      </div>
+
+      <div class="field pwd-field" [class.invalid]="(f.submitted || submitted) && password.invalid">
+        <label>Contraseña:</label>
+        <input [type]="showPwd ? 'text' : 'password'"
+               name="password" [(ngModel)]="form.password" #password="ngModel"
+               required minlength="6" 
+               [attr.aria-invalid]="password.invalid && (password.touched || f.submitted || submitted)" />
+        <button type="button" class="toggle" (click)="showPwd=!showPwd">{{ showPwd ? '🙈':'👁️' }}</button>
+        <!-- Texto de ayuda para la contraseña -->
+        <div class="password-hint">Mínimo 6 dígitos</div>
+        <!-- Mensaje oculto visualmente pero accesible para lectores de pantalla -->
+        <span class="error" *ngIf="password.invalid && (password.touched || f.submitted || submitted)">
+          <span *ngIf="password.errors?.['required']">La contraseña es obligatoria.</span>
+          <span *ngIf="password.errors?.['minlength']">Mínimo 6 caracteres.</span>
+        </span>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn ghost" (click)="regresar()">Regresar</button>
+        <button type="submit" class="btn primary">Siguiente</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Imagen derecha -->
+  <aside class="right">
+    <div class="photo" style="background-image:url('assets/registro3.jpg');"></div>
+  </aside>
+</div>

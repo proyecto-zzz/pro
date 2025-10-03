@@ -1,0 +1,72 @@
+<div class="open-page">
+  <!-- Barra superior -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo"><img src="assets/logo-banco.jpg" alt="Banco Zand" /></div>
+      <div class="brand-text">BANCO<br />ZAND</div>
+    </div>
+    <h1 class="title">Abrir cuentas</h1>
+    <button class="btn ghost" type="button" (click)="regresar()">Regresar</button>
+  </header>
+
+  <!-- Panel blanco -->
+  <section class="panel">
+    <h3 class="legend">Registra un nuevo cliente:</h3>
+
+    <form #f="ngForm" (ngSubmit)="registrar(f)" novalidate class="form">
+      <div class="grid">
+        <!-- Columna izquierda -->
+        <div class="col">
+          <div class="field" [class.invalid]="(f.submitted || submitted) && nombre.invalid">
+            <label>Nombre:</label>
+            <input type="text" name="nombre" [(ngModel)]="form.nombre" #nombre="ngModel" required />
+          </div>
+
+          <div class="field" [class.invalid]="(f.submitted || submitted) && apellidos.invalid">
+            <label>Apellidos:</label>
+            <input type="text" name="apellidos" [(ngModel)]="form.apellidos" #apellidos="ngModel" required />
+          </div>
+
+          <div class="field" [class.invalid]="(f.submitted || submitted) && curp.invalid">
+            <label>CURP:</label>
+            <input type="text" name="curp" [(ngModel)]="form.curp" #curp="ngModel" required />
+          </div>
+
+          <div class="field" [class.invalid]="(f.submitted || submitted) && correo.invalid">
+            <label>Correo electronico:</label>
+            <input type="email" name="correo" [(ngModel)]="form.correo" #correo="ngModel" required email />
+          </div>
+
+          <div class="field" [class.invalid]="(f.submitted || submitted) && telefono.invalid">
+            <label>Teléfono:</label>
+            <input type="tel" name="telefono" [(ngModel)]="form.telefono" #telefono="ngModel"
+                   required pattern="^[0-9\\s\\-()+]{7,}$" />
+          </div>
+        </div>
+
+        <!-- Columna derecha -->
+        <div class="col">
+          <div class="field">
+            <label>Deposito inicial (opcional):</label>
+            <input type="number" name="deposito" [(ngModel)]="form.deposito" min="0" step="0.01" />
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn primary">Registrar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <!-- Modal de éxito -->
+  <div class="overlay" *ngIf="ok"></div>
+  <div class="modal" *ngIf="ok" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-title">Cuenta registrada exitosamente</div>
+      <div class="modal-actions">
+        <button class="btn accept" type="button" (click)="aceptar()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
